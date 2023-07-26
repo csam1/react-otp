@@ -3,7 +3,7 @@ import "./otp.css";
 
 const OtpInput = ({
   otpFields = 5,
-  onCodeFilled = (otp) => null,
+  onCodeFilled,
   autoFocus = false,
   disabled = false,
   value = "",

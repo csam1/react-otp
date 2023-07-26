@@ -3,10 +3,12 @@ const path = require("path");
 module.exports = {
   entry: path.resolve(path.join(__dirname, "src/index.jsx")),
   output: {
-    path: path.resolve(path.join(__dirname, 'build')),
-    publicPath: '../dist/',
-    filename: '[name].js' // output bundle.js and vendor.js
+    path: path.resolve(path.join(__dirname, 'dist')),
+    filename: 'index.js',
+    library: "OtpInput",
+    libraryTarget: 'umd'
   },
+  externals: {react: 'react'},
   module: {
     rules: [
       {
@@ -14,7 +16,7 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /.(js|ts)x?$/,
+        test: /\.jsx$/i,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
