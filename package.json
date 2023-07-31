@@ -13,7 +13,7 @@
     "webpack-cli": "5.1.4"
   },
   "name": "react-otp-input-fields",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/index.js",
   "keywords": [
     "code",
