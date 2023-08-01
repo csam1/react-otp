@@ -1,8 +1,11 @@
 /.github
+/.git
 /src
 /.gitignore
-/.babelrc
-/webpack.config.js
+/babel.config.json
+/rollup.config.js
 /node_modules
 /package-lock.json
 /.npmignore
+/tsconfig.json
+/index.tsx

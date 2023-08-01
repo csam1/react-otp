@@ -1,5 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import "./otp.css";
+
+interface OtpInputProps {
+  otpFields?: number | undefined;
+  onCodeFilled: any;
+  autoFocus?: boolean | undefined;
+  disabled?: boolean | undefined;
+  value?: string | undefined;
+  placeholder?: string | undefined;
+}
 
 const OtpInput = ({
   otpFields = 5,
@@ -8,14 +16,14 @@ const OtpInput = ({
   disabled = false,
   value = "",
   placeholder = "-",
-}) => {
+}: OtpInputProps) => {
   const [activeInput, setActiveInput] = useState(0);
   const [otp, setOtp] = useState(value);
   const inputRef = useRef(new Array(otpFields).fill(""));
 
   const handleChange = (e) => {
     if (/\d/.test(e.target.value) && e.target.value !== "") {
-      const updateOtp = [...otp];
+      const updateOtp = Array.from(otp);
       updateOtp[activeInput] = e.target.value;
       setOtp(updateOtp.join(""));
       if (updateOtp.length < otpFields) {
@@ -25,7 +33,7 @@ const OtpInput = ({
   };
 
   const handleFocus = useCallback(
-    (e) => {
+    () => {
       inputRef[activeInput].focus();
     },
     [activeInput]
@@ -33,7 +41,7 @@ const OtpInput = ({
 
   const handleOTPDeletion = (e) => {
     if (e.key === "Backspace" && otp.length > 0) {
-      const updateOtp = [...otp];
+      const updateOtp = Array.from(otp);
       updateOtp[activeInput] = "";
       setOtp(updateOtp.join(""));
       if (activeInput > 0) {
@@ -73,12 +81,22 @@ const OtpInput = ({
           value={otp[index] || ""}
           onChange={handleChange}
           onKeyDown={handleOTPDeletion}
-          maxLength="1"
+          maxLength={1}
           key={index}
           autoFocus={autoFocus}
           ref={(ref) => (inputRef[index] = ref)}
           disabled={disabled}
           onPaste={handlePaste}
+          style={{
+            width: "56px",
+            height: "56px",
+            marginRight: "10px",
+            border: "1px solid #d9d9d9",
+            boxSizing: "border-box",
+            boxShadow: "0px 0.5px 2px rgba(0,0,0,0.1)",
+            borderRadius: "10px",
+            textAlign: "center",
+          }}
         />
       ))}
     </div>
