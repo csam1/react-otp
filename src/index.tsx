@@ -1,20 +1,20 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface OtpInputProps {
-  otpFields?: number | undefined;
+  otpFields: number;
   onCodeFilled: any;
   autoFocus?: boolean | undefined;
   disabled?: boolean | undefined;
-  value?: string | undefined;
+  value: string;
   placeholder?: string | undefined;
 }
 
 const OtpInput = ({
-  otpFields = 5,
+  otpFields=5,
   onCodeFilled,
   autoFocus = false,
   disabled = false,
-  value = "",
+  value,
   placeholder = "-",
 }: OtpInputProps) => {
   const [activeInput, setActiveInput] = useState(0);
